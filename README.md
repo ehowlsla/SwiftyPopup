@@ -22,7 +22,6 @@ class ExamplePopup: SwiftyPopup {
         close.frame = CGRectMake(0, 185, 300, 30)
         close.addTarget(self, action: #selector(btnClose), forControlEvents: .TouchUpInside)
         contentView.addSubview(close)
-
       
         print(contentView.frame)
     }
