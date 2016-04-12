@@ -11,7 +11,7 @@ SwiftyPopup is popup view for use dynamic.
 
 
 ## Example Extension
-'''javascript
+~~~javascript
 class ExamplePopup: SwiftyPopup {
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,14 +35,14 @@ class ExamplePopup: SwiftyPopup {
         dismiss()
     }
 }
-'''
+~~~
 
 ## Example Use
-'''javascript
+~~~javascript
   let popup = ExamplePopup()
   popup.showInView(self.view) //show
   popup.dismiss() //hide
-'''
+~~~
 
 ## License
 
