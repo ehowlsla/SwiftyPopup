@@ -14,6 +14,8 @@
 		813DEFE41CBCC3E4004B2668 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 813DEFE21CBCC3E4004B2668 /* LaunchScreen.storyboard */; };
 		813DEFEF1CBCC3E4004B2668 /* SwiftyPopupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813DEFEE1CBCC3E4004B2668 /* SwiftyPopupTests.swift */; };
 		813DEFFA1CBCC3E4004B2668 /* SwiftyPopupUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813DEFF91CBCC3E4004B2668 /* SwiftyPopupUITests.swift */; };
+		813DF0081CBCC55E004B2668 /* SwiftyColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813DF0071CBCC55E004B2668 /* SwiftyColor.swift */; };
+		813DF00A1CBCC70F004B2668 /* ExamplePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813DF0091CBCC70F004B2668 /* ExamplePopup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		813DEFF51CBCC3E4004B2668 /* SwiftyPopupUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyPopupUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		813DEFF91CBCC3E4004B2668 /* SwiftyPopupUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPopupUITests.swift; sourceTree = "<group>"; };
 		813DEFFB1CBCC3E4004B2668 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		813DF0071CBCC55E004B2668 /* SwiftyColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyColor.swift; sourceTree = "<group>"; };
+		813DF0091CBCC70F004B2668 /* ExamplePopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamplePopup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				813DEFE01CBCC3E4004B2668 /* Assets.xcassets */,
 				813DEFE21CBCC3E4004B2668 /* LaunchScreen.storyboard */,
 				813DEFE51CBCC3E4004B2668 /* Info.plist */,
+				813DF0071CBCC55E004B2668 /* SwiftyColor.swift */,
+				813DF0091CBCC70F004B2668 /* ExamplePopup.swift */,
 			);
 			path = SwiftyPopup;
 			sourceTree = "<group>";
@@ -257,7 +263,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				813DEFDC1CBCC3E4004B2668 /* ViewController.swift in Sources */,
+				813DF00A1CBCC70F004B2668 /* ExamplePopup.swift in Sources */,
 				813DEFDA1CBCC3E4004B2668 /* AppDelegate.swift in Sources */,
+				813DF0081CBCC55E004B2668 /* SwiftyColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
