@@ -9,6 +9,10 @@
 
 import UIKit
 
+
+
+
+
 class SwiftyPopup: UIView {
     
     var attached = false
@@ -21,8 +25,18 @@ class SwiftyPopup: UIView {
     var target: UIView?
     var corner = CGFloat(3)
     
+    
     func showInView(target: UIView) {
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardShow), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardHide), name: UIKeyboardWillHideNotification, object: nil)
+        
         self.frame = target.frame
+        let btnHide = UIButton(type: .Custom)
+        btnHide.frame = CGRectMake(0, 0, self.frame.width, self.frame.height)
+        btnHide.addTarget(self, action: #selector(hideKeyboardDismiss), forControlEvents: .TouchUpInside)
+        self.addSubview(btnHide)
+        
         self.target = target
         self.contentView.frame = target.frame
         for subview in self.contentView.subviews {
@@ -33,9 +47,13 @@ class SwiftyPopup: UIView {
         self.alpha = 0
         self.contentView.alpha = 0
         self.contentView.clipsToBounds = true
+        
+        
         self.backgroundColor = UIColor(white: 0.2, alpha: 0.5)
-//            0x444444 ~ 50%
         self.contentView.backgroundColor = UIColor.whiteColor()
+        
+//        self.backgroundColor = 0x444444 ~ 50%
+//        self.contentView.backgroundColor = Color.white
         self.addSubview(contentView)
         target.addSubview(self)
         
@@ -82,5 +100,38 @@ class SwiftyPopup: UIView {
     func setWidthHeight(width: CGFloat, _ height: CGFloat) {
         self.w = width
         self.h = height
+    }
+    
+    func hideKeyboardDismiss() {
+        for v in self.contentView.subviews {
+            if(v.isKindOfClass(UITextField) || v.isKindOfClass(UITextView)) {
+                v.resignFirstResponder()
+            }
+        }
+        dismiss()
+    }
+    
+    func keyboardShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            let y = (self.frame.height - keyboardSize.height - self.contentView.frame.height) / 2 + 42
+            if self.contentView.frame.minY > y {
+                UIView.animateWithDuration(0.2, animations: {
+                    self.contentView.frame = CGRectMake(self.contentView.frame.minX, (self.frame.height - keyboardSize.height - self.contentView.frame.height) / 2 + 42, self.contentView.frame.width, self.contentView.frame.height)
+                })
+            }
+        }
+    }
+    
+    func keyboardHide(notification: NSNotification) {
+        if let target = self.target {
+            UIView.animateWithDuration(0.2, animations: {
+                self.contentView.frame = CGRectMake((target.frame.width - self.w) / 2, (target.frame.height - self.h) / 2, self.w, self.h)
+            })
+        }
+    }
+    
+    override func removeFromSuperview() {
+        super.removeFromSuperview()
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
