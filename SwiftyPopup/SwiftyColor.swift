@@ -25,6 +25,8 @@ class SwiftyPopup: UIView {
     var target: UIView?
     var corner = CGFloat(3)
     
+    let dummyStart = CGFloat(32)
+    
     override init(frame: CGRect) {
         _w = frame.width
         _h = frame.height
@@ -71,7 +73,7 @@ class SwiftyPopup: UIView {
         UIView.animateWithDuration(0.15, animations: {
             self.alpha = 1
             self.contentView.alpha = 1
-            self.contentView.frame = CGRectMake((target.frame.width - self._w) / 2, (target.frame.height - self._h) / 2, self._w, self._h)
+            self.contentView.frame = CGRectMake((target.frame.width - self._w) / 2, (target.frame.height - self._h) / 2 - self.dummyStart, self._w, self._h)
             
             }, completion: { complete in
                 self.contentView.layer.cornerRadius = self.corner
@@ -124,10 +126,10 @@ class SwiftyPopup: UIView {
     
     func keyboardShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            let y = (self.frame.height - keyboardSize.height - self.contentView.frame.height) / 2 + 42
+            let y = (self.frame.height - keyboardSize.height - self.contentView.frame.height) / 2 + 42 - dummyStart
             if self.contentView.frame.minY > y {
                 UIView.animateWithDuration(0.2, animations: {
-                    self.contentView.frame = CGRectMake(self.contentView.frame.minX, (self.frame.height - keyboardSize.height - self.contentView.frame.height) / 2 + 42, self.contentView.frame.width, self.contentView.frame.height)
+                    self.contentView.frame = CGRectMake(self.contentView.frame.minX, (self.frame.height - keyboardSize.height - self.contentView.frame.height) / 2 + 42 - self.dummyStart, self.contentView.frame.width, self.contentView.frame.height)
                 })
             }
         }
@@ -136,7 +138,7 @@ class SwiftyPopup: UIView {
     func keyboardHide(notification: NSNotification) {
         if let target = self.target {
             UIView.animateWithDuration(0.2, animations: {
-                self.contentView.frame = CGRectMake((target.frame.width - self._w) / 2, (target.frame.height - self._h) / 2, self._w, self._h)
+                self.contentView.frame = CGRectMake((target.frame.width - self._w) / 2, (target.frame.height - self._h) / 2 - self.dummyStart, self._w, self._h)
             })
         }
     }
