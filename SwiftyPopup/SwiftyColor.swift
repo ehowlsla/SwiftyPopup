@@ -38,7 +38,7 @@ class SwiftyPopup: UIView {
         self.addSubview(btnHide)
         
         self.target = target
-        self.contentView.frame = target.frame
+        self.contentView.frame =  CGRectMake(0, 0, target.frame.width, target.frame.height)
         for subview in self.contentView.subviews {
             subview.alpha = 0
         }
@@ -51,9 +51,7 @@ class SwiftyPopup: UIView {
         
         self.backgroundColor = UIColor(white: 0.2, alpha: 0.5)
         self.contentView.backgroundColor = UIColor.whiteColor()
-        
-//        self.backgroundColor = 0x444444 ~ 50%
-//        self.contentView.backgroundColor = Color.white
+         
         self.addSubview(contentView)
         target.addSubview(self)
         
