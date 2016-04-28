@@ -19,12 +19,25 @@ class SwiftyPopup: UIView {
     let contentView = UIView()
     
     
-    var w = CGFloat(300)
-    var h = CGFloat(400)
+    var _w = CGFloat(300)
+    var _h = CGFloat(400)
     
     var target: UIView?
     var corner = CGFloat(3)
     
+    override init(frame: CGRect) {
+        _w = frame.width
+        _h = frame.height
+        super.init(frame: frame)
+    }
+    
+    func setBGCorner(corner: CGFloat) {
+        self.corner = corner
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     func showInView(target: UIView) {
         
@@ -58,7 +71,7 @@ class SwiftyPopup: UIView {
         UIView.animateWithDuration(0.15, animations: {
             self.alpha = 1
             self.contentView.alpha = 1
-            self.contentView.frame = CGRectMake((target.frame.width - self.w) / 2, (target.frame.height - self.h) / 2, self.w, self.h)
+            self.contentView.frame = CGRectMake((target.frame.width - self._w) / 2, (target.frame.height - self._h) / 2, self._w, self._h)
             
             }, completion: { complete in
                 self.contentView.layer.cornerRadius = self.corner
@@ -96,8 +109,8 @@ class SwiftyPopup: UIView {
     }
     
     func setWidthHeight(width: CGFloat, _ height: CGFloat) {
-        self.w = width
-        self.h = height
+        self._w = width
+        self._h = height
     }
     
     func hideKeyboardDismiss() {
@@ -123,7 +136,7 @@ class SwiftyPopup: UIView {
     func keyboardHide(notification: NSNotification) {
         if let target = self.target {
             UIView.animateWithDuration(0.2, animations: {
-                self.contentView.frame = CGRectMake((target.frame.width - self.w) / 2, (target.frame.height - self.h) / 2, self.w, self.h)
+                self.contentView.frame = CGRectMake((target.frame.width - self._w) / 2, (target.frame.height - self._h) / 2, self._w, self._h)
             })
         }
     }
